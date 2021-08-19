@@ -1,13 +1,15 @@
+package arraylist;
+
 import java.util.Scanner;
 
-public class Main {
+public class MainArrayList {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ProductManagement productManagement = new ProductManagement();
-        runMainProgram(scanner, productManagement);
+        ProductManagementArrayList productManagementArrayList = new ProductManagementArrayList();
+        runMainProgram(scanner, productManagementArrayList);
     }
 
-    private static void runMainProgram(Scanner scanner, ProductManagement productManagement) {
+    private static void runMainProgram(Scanner scanner, ProductManagementArrayList productManagementArrayList) {
         int choice;
         do {
             menu();
@@ -16,27 +18,27 @@ public class Main {
             scanner.nextLine();
             switch (choice) {
                 case 1: {
-                    addProductInArrayList(scanner, productManagement);
+                    addProductInArrayList(scanner, productManagementArrayList);
                     break;
                 }
                 case 2: {
-                    editProductInList(scanner, productManagement);
+                    editProductInList(scanner, productManagementArrayList);
                     break;
                 }
                 case 3: {
-                    deleteProductInList(scanner, productManagement);
+                    deleteProductInList(scanner, productManagementArrayList);
                     break;
                 }
                 case 4: {
-                    productManagement.displayProduct();
+                    productManagementArrayList.displayProduct();
                     break;
                 }
                 case 5: {
-                    findProductInList(scanner, productManagement);
+                    findProductInList(scanner, productManagementArrayList);
                     break;
                 }
                 case 6: {
-                    productManagement.sortProduct();
+                    productManagementArrayList.sortProduct();
                     System.out.println("Đã sắp xếp");
                     break;
                 }
@@ -51,44 +53,44 @@ public class Main {
         } while (choice != 0);
     }
 
-    private static void editProductInList(Scanner scanner, ProductManagement productManagement) {
+    private static void editProductInList(Scanner scanner, ProductManagementArrayList productManagementArrayList) {
         System.out.print("Nhập id sản phẩm muốn sửa : ");
         String idProduct = scanner.nextLine();
-        int index = findIndexFromIdProduct(idProduct, productManagement);
+        int index = findIndexFromIdProduct(idProduct, productManagementArrayList);
         if (index != -1) {
             Product product = initProduct(scanner);
-            productManagement.editProduct(index, product);
+            productManagementArrayList.editProduct(index, product);
         } else {
             System.out.println("Không thấy id sản phẩm " + idProduct + " trong danh sách!");
         }
     }
 
-    private static void deleteProductInList(Scanner scanner, ProductManagement productManagement) {
+    private static void deleteProductInList(Scanner scanner, ProductManagementArrayList productManagementArrayList) {
         System.out.print("Nhập id sản phẩm muốn xóa : ");
         String idProduct = scanner.nextLine();
-        int index = findIndexFromIdProduct(idProduct, productManagement);
+        int index = findIndexFromIdProduct(idProduct, productManagementArrayList);
         if (index != -1) {
-            productManagement.removeProduct(index);
+            productManagementArrayList.removeProduct(index);
         } else {
             System.out.println("Không thấy id sản phẩm " + idProduct + " trong danh sách!");
         }
     }
 
-    private static void findProductInList(Scanner scanner, ProductManagement productManagement) {
+    private static void findProductInList(Scanner scanner, ProductManagementArrayList productManagementArrayList) {
         System.out.print("Hãy nhập tên sản phẩm : ");
         String nameProduct = scanner.nextLine();
-        int index = findIndexFromName(nameProduct, productManagement);
+        int index = findIndexFromName(nameProduct, productManagementArrayList);
         if (index != -1) {
-            System.out.println("Đã tìm thấy : " + productManagement.findProduct(index).toString());
+            System.out.println("Đã tìm thấy : " + productManagementArrayList.findProduct(index).toString());
         } else {
             System.out.println("Không tìm thấy " + nameProduct + " trong danh sách");
         }
     }
 
 
-    private static void addProductInArrayList(Scanner scanner, ProductManagement productManagement) {
+    private static void addProductInArrayList(Scanner scanner, ProductManagementArrayList productManagementArrayList) {
         Product product = initProduct(scanner);
-        productManagement.addProduct(product);
+        productManagementArrayList.addProduct(product);
         System.out.println("Đã thêm sản phẩm thành công");
     }
 
@@ -103,10 +105,10 @@ public class Main {
         return product;
     }
 
-    private static int findIndexFromIdProduct(String idProduct, ProductManagement productManagement) {
+    private static int findIndexFromIdProduct(String idProduct, ProductManagementArrayList productManagementArrayList) {
         int index = -1;
-        for (int i = 0; i < productManagement.getProducts().size(); i++) {
-            if (idProduct.equals(productManagement.getProducts().get(i).getIdProduct())) {
+        for (int i = 0; i < productManagementArrayList.getProducts().size(); i++) {
+            if (idProduct.equals(productManagementArrayList.getProducts().get(i).getIdProduct())) {
                 index = i;
                 break;
             }
@@ -114,10 +116,10 @@ public class Main {
         return index;
     }
 
-    private static int findIndexFromName(String name, ProductManagement productManagement) {
+    private static int findIndexFromName(String name, ProductManagementArrayList productManagementArrayList) {
         int index = -1;
-        for (int i = 0; i < productManagement.getProducts().size(); i++) {
-            if (name.equals(productManagement.getProducts().get(i).getName())) {
+        for (int i = 0; i < productManagementArrayList.getProducts().size(); i++) {
+            if (name.equals(productManagementArrayList.getProducts().get(i).getName())) {
                 index = i;
                 break;
             }

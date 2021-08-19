@@ -1,3 +1,5 @@
+package arraylist;
+
 public class Product implements Comparable<Product> {
     private String name;
     private String idProduct;

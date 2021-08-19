@@ -1,8 +1,10 @@
+package arraylist;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ProductManagement {
+public class ProductManagementArrayList {
     private List<Product> products = new ArrayList<>();
 
     public List<Product> getProducts() {
